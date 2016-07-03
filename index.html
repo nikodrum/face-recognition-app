@@ -13,14 +13,15 @@
 <body>
 
 <h1 class="title margin_top_50">Face Recognition</h1>
-<div class="container margin_top_40">
-    <div class="container__title margin_top_170">Drop pictures or <span class="container__title--underline">browse</span></div>
+<div class="container margin_top_40 js-dropArea">
+    <div class="container__title margin_top_170">Drop pictures or <span class="js-input container__title--underline">browse</span></div>
 </div>
-<button class="btn margin_top_18"><span class="btn__text">Recognize</span></button>
+<button class="btn btn__text margin_top_18" type="submit">Recognize</button>
+<input class="js-input-hide hide" type="file" name="myImage" accept="image/*" />
+
 <!--JQuery and Custom js-->
 
 <script src="js/lib/jquery-3.0.0.min.js"></script>
 <script src="js/main.js"></script>
-
 </body>
 </html>

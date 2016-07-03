@@ -44,10 +44,15 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    pointer-events: none;
 }
 .container__title--underline{
     text-decoration: underline;
     cursor: pointer;
+    pointer-events: auto;
+}
+.container--image{
+    background-color: #ffffff;
 }
 
 .btn{
@@ -68,6 +73,22 @@ body{
     font-size: 62px;
     font-family: "RalewayExtraLight", sans-serif;
     line-height: 30px;
+}
+
+.image{
+    display: none;
+    max-height: 415px;
+    vertical-align: middle;
+}
+
+.helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.hide{
+    display: none;
 }
 
 /*Additional styles*/
