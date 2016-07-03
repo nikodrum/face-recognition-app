@@ -20,8 +20,10 @@ $(document).ready(function() {
         e.preventDefault();
         var reader = new FileReader(),
             file = e.originalEvent.dataTransfer.files[0];
-        if (file.type === "image/jpeg" || file.type === "image/gif" || file.type === "image/png"){
-            reader.onload = (function(file) {
+        console.log(file.size);
+        console.log(file.size < 2000000);
+        if ((file.type === "image/jpeg" || file.type === "image/gif" || file.type === "image/png") && file.size < 2000000){
+            reader.onload = (function() {
                 return function(e) {
                     addImage(dropZone, e);
                 };
@@ -39,7 +41,7 @@ $(document).ready(function() {
     });
 
     function readURL(input) {
-        if (input.files[0]) {
+        if (input.files[0] && input.files[0].size < 2000000) {
             var reader = new FileReader();
             reader.onload = function(e) {
                 addImage(dropZone, e);
