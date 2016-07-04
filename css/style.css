@@ -90,6 +90,7 @@ body{
 .image{
     display: none;
     max-height: 415px;
+    max-width: 100%;
     vertical-align: middle;
     pointer-events: none;
     -webkit-user-select: none;
@@ -126,4 +127,7 @@ body{
 }
 .margin_top_18{
     margin-top: 18px;
+}
+.margin_top_25{
+    margin-top: 25px;
 }

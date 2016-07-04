@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var dropZone = $('.js-dropArea'),
-        input = $('.js-input');
+        input = $('.js-input'),
+        file_send = [];
     dropZone.on('dragenter', function(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -21,54 +22,60 @@ $(document).ready(function() {
             file = e.originalEvent.dataTransfer.files[0];
         console.log(file.size);
         console.log(file.size < 2000000);
-        if ((file.type === "image/jpeg" || file.type === "image/gif" || file.type === "image/png") && file.size < 2000000){
+        if ((file.type === "image/jpeg" || file.type === "image/gif" || file.type === "image/png") && file.size < 2000000) {
             reader.onload = (function() {
                 return function(e) {
-                    addImage(dropZone, e);
+                    addImage(dropZone, e, file);
                 };
             })(file);
             reader.readAsDataURL(file);
-        }else{
+        } else {
             $(this).removeClass('container--image');
         }
-    });
-    input.click(function() {
-        $(".js-input-hide").trigger('click');
     });
     $(".js-input-hide").on("change", function() {
         readURL(this);
     });
+    input.click(function() {
+        $(".js-input-hide").trigger('click');
+    });
+
+    // Ajax request
+
+    $('.js-btn').on('click', function () {
+        $.ajax({
+            url: '/urlFromBack',
+            data: {filename: file_send[0].filename, data: file_send[0].data},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 
     function readURL(input) {
-        if (input.files[0] && input.files[0].size < 2000000) {
+        var file = input.files[0];
+        if (file && file.size < 2000000) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                addImage(dropZone, e);
+                addImage(dropZone, e, file);
             };
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-    function addImage(dropZone, e) {
+    function addImage(dropZone, e, file) {
+        if (file == "" || file == "undefined") file.name = '';
+        var object = {};
+        object.filename = file.name;
+        object.data = e.target.result;
+        file_send.push(object);
         dropZone.removeClass('container--image');
         dropZone.html('');
         dropZone.append('<span class="helper"></span>' + '<img class="image js-image" src="' + e.target.result + ' ">');
         $('.js-image').fadeIn();
     }
-    $(document).on('dragenter', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-    });
-    $(document).on('dragover', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-    });
-    $(document).on('dragleave', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-    });
-    $(document).on('drop', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-    });
 });
