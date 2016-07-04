@@ -14,7 +14,6 @@ $(document).ready(function() {
     dropZone.on('dragover', function(e) {
         e.stopPropagation();
         e.preventDefault();
-
     });
     dropZone.on('drop', function(e) {
         e.preventDefault();
@@ -51,7 +50,7 @@ $(document).ready(function() {
     }
 
     function addImage(dropZone, e) {
-        dropZone.addClass('container--image');
+        dropZone.removeClass('container--image');
         dropZone.html('');
         dropZone.append('<span class="helper"></span>' + '<img class="image js-image" src="' + e.target.result + ' ">');
         $('.js-image').fadeIn();

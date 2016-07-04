@@ -50,7 +50,15 @@ body{
     text-decoration: underline;
     cursor: pointer;
     pointer-events: auto;
+    transition: color 1s ease-out 0s;
 }
+.container__title--underline:hover{
+    color: #4bb1bf;
+    text-shadow: -1px -1px 1px rgba(255,255,255,0.2),
+    1px 1px 1px rgba(255,255,255,0.2),
+    1px 1px 1px rgba(0,0,0,0.7);
+}
+
 .container--image{
     background-color: #ffffff;
 }
@@ -67,6 +75,10 @@ body{
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+    transition: background-color 1s ease-out 0s;
+}
+.btn:hover{
+    background-color: #7ccccb;
 }
 .btn__text{
     color: #000000;
@@ -79,12 +91,18 @@ body{
     display: none;
     max-height: 415px;
     vertical-align: middle;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .helper{
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+    pointer-events: none;
 }
 
 .hide{
