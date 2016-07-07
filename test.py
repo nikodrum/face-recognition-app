@@ -8,8 +8,10 @@ Created on Thu Jun 30 10:21:48 2016
 import os
 os.chdir('c:/users/prost/projects/flask-app-template-master/app/darknet/')
 
-with open("data/test.jpg", "rb") as imageFile:
-  f = imageFile.read()
+with open("/users/niko_yakovlev/Documents/projects/darknet/data/dog.jpg", "rb") as imageFile:
+  file = imageFile.read()
+with open("/users/niko_yakovlev/temp.txt",'wb') as f:
+    f.write(file)
 
 import requests
 

@@ -19,7 +19,7 @@ class Recognition():
 
     def start_recognition(self):
 
-        p = Popen("darknet yolo test cfg/yolo-tiny.cfg weights/yolo-tiny.weights data/temp.png",
+        p = Popen("./darknet yolo test cfg/yolo-tiny.cfg weights/yolo-tiny.weights data/temp.png",
                          stdout = PIPE, stderr = STDOUT, shell = True)
         while True:
             line = p.stdout.readline()

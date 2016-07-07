@@ -19,4 +19,4 @@ def recognition():
     requestes_pic = request.data
     responce_pic = models.Recognition(requestes_pic).recognize()
 
-    return responce_pic, 200
+    return { 'img_data' : responce_pic }, 200
