@@ -44,11 +44,14 @@ $(document).ready(function() {
 
     $('.js-btn').on('click', function () {
         $.ajax({
-            url: '/urlFromBack',
+            url: '/api/v0/recognize',
             data: {filename: file_send[0].filename, data: file_send[0].data},
             type: 'POST',
             success: function(response) {
                 console.log(response);
+                var obj = $.parseJSON(response); //parse JSON
+                console.log(obj.data_img);
+                $(".js-image").attr("src", response.data_img);
             },
             error: function(error) {
                 console.log(error);
