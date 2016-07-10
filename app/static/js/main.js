@@ -2,6 +2,8 @@ $(document).ready(function() {
     var dropZone = $('.js-dropArea'),
         input = $('.js-input'),
         file_send = [];
+        // data = new FormData(); for FormData
+
     dropZone.on('dragenter', function(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -51,8 +53,9 @@ $(document).ready(function() {
             type: 'POST',
             processData: false,
             contentType: false,
+            // data: fd, for FormData
             beforeSend: function (request) {
-                request.setRequestHeader("Content-Type", file.type);
+                request.setRequestHeader("Content-Type", file_send[0].type);
             },
             success: function(response) {
                 console.log(response);
@@ -81,6 +84,7 @@ $(document).ready(function() {
     function addImage(dropZone, e, file) {
         if (file == "" || file == "undefined") file.name = '';
         var object = {};
+        // data.append( 'file', input.files[0] ); for FormData
         object.filename = file.name;
         object.data = e.target.result;
         file_send.push(object);
