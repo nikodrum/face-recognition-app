@@ -43,10 +43,17 @@ $(document).ready(function() {
     // Ajax request
 
     $('.js-btn').on('click', function () {
+        console.log(file_send[0].filename);
+        console.log(file_send[0].data);
         $.ajax({
             url: '/api/v0/recognize',
             data: {filename: file_send[0].filename, data: file_send[0].data},
             type: 'POST',
+            processData: false,
+            contentType: false,
+            beforeSend: function (request) {
+                request.setRequestHeader("Content-Type", file.type);
+            },
             success: function(response) {
                 console.log(response);
                 var obj = $.parseJSON(response); //parse JSON
