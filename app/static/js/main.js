@@ -47,16 +47,15 @@ $(document).ready(function() {
     $('.js-btn').on('click', function () {
         console.log(file_send[0].filename);
         console.log(file_send[0].data);
+        var data = {"filename": file_send[0].filename, "data": file_send[0].data};
+        var updateData = JSON.stringify(data);
         $.ajax({
             url: '/api/v0/recognize',
-            data: {filename: file_send[0].filename, data: file_send[0].data},
+            data: updateData,
             type: 'POST',
             processData: false,
             contentType: false,
             // data: fd, for FormData
-            beforeSend: function (request) {
-                request.setRequestHeader("Content-Type", file_send[0].type);
-            },
             success: function(response) {
                 console.log(response);
                 var obj = $.parseJSON(response); //parse JSON
